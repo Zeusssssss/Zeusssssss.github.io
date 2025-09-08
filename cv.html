@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BizFlowIQ Consulting – Adrian Augustyniak</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Font Awesome for LinkedIn Icon -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    :root {
+      --bg: #121212;
+      --surface: #1e1e1e;
+      --text: #e0e0e0;
+      --text-light: #aaa;
+      --accent: #00bfa6;
+      --transition: 0.3s ease-in-out;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    a:hover {
+      color: #fff;
+    }
+
+    /* Header & Nav */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--surface);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      z-index: 1000;
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    nav a {
+      font-weight: 500;
+    }
+
+    /* Container & Sections */
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding-top: 100px; /* account for fixed header */
+    }
+    section {
+      padding: 6rem;
+    }
+
+    /* Hero Section */
+    #hero {
+      text-align: center;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+      padding: 6rem 2rem;
+      border-radius: 8px;
+      margin-bottom: 4rem; 
+    }
+    #hero h1 {
+      font-size: 2.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    #hero p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #121212;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: background var(--transition);
+    }
+    .btn:hover {
+      background: #00e6c3;
+    }
+
+    /* About Me */
+    #about-me {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: 6px;
+      max-width: 800px;
+      margin: 0 auto 4rem auto;
+    }
+    #about-me h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+    #about-me p {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+    .tech-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tech-list li {
+      background: #2a2a2a;
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    /* Services */
+    #services ul {
+      list-style: none;
+      padding-left: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 600px) {
+      #services ul {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    #services li {
+      background: var(--surface);
+      padding: 1.5rem;
+      border-radius: 6px;
+      transition: transform var(--transition);
+    }
+    #services li:hover {
+      transform: translateY(-4px);
+    }
+    #services h2 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    #services li h3 {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    #services li p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    /* Process */
+    .grid-4 {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 800px) {
+      .grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    .step {
+      background: var(--surface);
+      padding: 1rem;
+      border-radius: 6px;
+      text-align: center;
+      transition: background var(--transition);
+    }
+    .step:hover {
+      background: #292929;
+    }
+    .step h4 {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    .step p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* Why */
+    #why ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 600px) {
+      #why ul {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    #why h2 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    #why li {
+      position: relative;
+      padding-left: 1.2rem;
+      color: var(--text-light);
+    }
+    #why li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* Contact & Form */
+    #contact {
+      text-align: center;
+    }
+    #contact h2 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    #contact form {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: 6px;
+      max-width: 500px;
+      margin: 0 auto 2rem auto;
+    }
+    #contact label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-light);
+      text-align: left;
+    }
+    #contact input,
+    #contact textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      background: #2a2a2a;
+      color: var(--text);
+    }
+    #contact button {
+      width: 100%;
+      background: var(--accent);
+      color: #121212;
+      padding: 0.75rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    #contact button:hover {
+      background: #00e6c3;
+    }
+    /* LinkedIn Icon */
+    .social-icons a {
+      color: var(--accent);
+      font-size: 2rem;
+      margin: 0 0.5rem;
+      transition: color var(--transition);
+    }
+    .social-icons a:hover {
+      color: #fff;
+    }
+
+    #process h2 {
+      margin-bottom: 2rem; /* Adds space below the heading */
+    }
+
+    #process ul {
+      list-style: none;
+      padding-left: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem; /* Adds space between each point */
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">BizFlowIQ</div>
+    <nav>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#why">Why</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero -->
+    <section id="hero">
+      <h1>Strategic Automation & Analytics Consulting</h1>
+      <p>Custom dashboards, automating tasks, and end-to-end solutions—powered by one seasoned expert.</p>
+      <a href="#contact" class="btn">Book Your Free Discovery Call</a>
+    </section>
+
+    <!-- About Me -->
+    <section id="about-me">
+      <h2>About Me</h2>
+      <p>
+        I’m Adrian Augustyniak, a solo consultant specializing in automation and analytics.
+        With over 4 years of experience, I help mid-sized organizations streamline reporting,
+        eliminate manual bottlenecks, and empower teams with real-time insights.
+      </p>
+      <h3>Technologies I Specialize In</h3>
+      <ul class="tech-list">
+        <li>Power BI (PBI)</li>
+        <li>Power Automate</li>
+        <li>SAP Scripting</li>
+        <li>Python</li>
+      </ul>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <h2>Services</h2>
+      <ul>
+        <li>
+          <h3>Consulting & Strategy Workshops</h3>
+          <p>Map your processes, uncover bottlenecks, and define a clear automation roadmap.</p>
+        </li>
+        <li>
+          <h3>Custom Dashboard Development</h3>
+          <p>Interactive analytics in Power BI, Tableau, or your favorite tool—built for your KPIs.</p>
+        </li>
+        <li>
+          <h3>Automation Audits</h3>
+          <p>Full review of workflows and scripts to find inefficiencies, security risks, and scale gaps.</p>
+        </li>
+        <li>
+          <h3>End-to-End Automation Solutions</h3>
+          <p>No-code/low-code automations from specs through deployment, training, and support.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Process -->
+    <section id="process">
+      <h2>How I Work</h2>
+      <div class="grid-4">
+        <div class="step">
+          <h4>1. Discovery</h4>
+          <p>Kick off with a 60-minute deep-dive to align on goals and tech stack.</p>
+        </div>
+        <div class="step">
+          <h4>2. Roadmap</h4>
+          <p>Action plan with phases, deliverables, timelines, and success metrics.</p>
+        </div>
+        <div class="step">
+          <h4>3. Build & Iterate</h4>
+          <p>Rapid prototyping, live demos, and feedback loops.</p>
+        </div>
+        <div class="step">
+          <h4>4. Handoff & Train</h4>
+          <p>Comprehensive docs, walkthroughs, and optional ongoing support.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section id="why">
+      <h2>Why Work with Me</h2>
+      <ul>
+        <li>Cross-industry expertise that turns complex data into clarity</li>
+        <li>No-code first approach—fast results with minimal IT lift</li>
+        <li>KPI-driven focus: every project delivers measurable ROI</li>
+        <li>Collaborative partnership: I embed with your team for knowledge transfer</li>
+      </ul>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Let’s Chat</h2>
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+      >
+        <!-- hidden honeypot & form-name -->
+        <input type="hidden" name="form-name" value="contact" />
+        <p style="display:none;">
+          <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+        </p>
+
+        <label for="name">Your Name</label>
+        <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email" placeholder="you@company.com" required />
+
+        <label for="message">What’s on your mind?</label>
+        <textarea id="message" name="message" rows="4" placeholder="Tell me about your project..."></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+
+      <div class="social-icons">
+        <a
+          href="https://www.linkedin.com/in/adrian-augustyniak-843151231/"
+          target="_blank"
+          rel="noopener"
+          title="Connect on LinkedIn"
+        >
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
+```
