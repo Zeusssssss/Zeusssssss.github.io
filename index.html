@@ -424,24 +424,21 @@
         document.getElementById("contact-form").addEventListener("submit", function(e) {
           e.preventDefault();
 
-          const formData = {
-            name: this.name.value,
-            email: this.email.value,
-            message: this.message.value
-          };
+          const formData = new URLSearchParams();
+            formData.append(this.name.value);
+            formData.append(this.email.value);
+            formData.append(this.message.value);
 
-          fetch("https://script.google.com/macros/s/AKfycbyYPeB0jBHOwJKDt3wXi8LUDOa1jPE6dBtaO-YtCGHTwp8ZL0tKLtHinIIqip_cP7H8/exec", {
-            method: "POST",
-            body: JSON.stringify(formData),
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
-          .then(() => alert("Message sent!"))
-          .catch(() => alert("Something went wrong."));
+            fetch("https://script.google.com/macros/s/AKfycbyYPeB0jBHOwJKDt3wXi8LUDOa1jPE6dBtaO-YtCGHTwp8ZL0tKLtHinIIqip_cP7H8/exec", {
+              method: "POST",
+              body: formData
+            })
+            .then(response => response.text())
+            .then(data => console.log(data))
+            .catch(error => console.error("Error:", error));
+
         });
       </script>
-
 
       <div class="social-icons">
         <a
