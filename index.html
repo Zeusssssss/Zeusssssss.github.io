@@ -413,29 +413,35 @@
     <!-- Contact -->
     <section id="contact">
       <h2>Let’s Chat</h2>
-      <form
-        name="contact"
-        method="POST"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
-      >
-        <!-- hidden honeypot & form-name -->
-        <input type="hidden" name="form-name" value="contact" />
-        <p style="display:none;">
-          <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-        </p>
-
-        <label for="name">Your Name</label>
-        <input id="name" name="name" type="text" placeholder="Jane Doe" required />
-
-        <label for="email">Email Address</label>
-        <input id="email" name="email" type="email" placeholder="you@company.com" required />
-
-        <label for="message">What’s on your mind?</label>
-        <textarea id="message" name="message" rows="4" placeholder="Tell me about your project..."></textarea>
-
-        <button type="submit">Send Message</button>
+      <form id="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
       </form>
+
+      <script>
+        document.getElementById("contact-form").addEventListener("submit", function(e) {
+          e.preventDefault();
+
+          const formData = {
+            name: this.name.value,
+            email: this.email.value,
+            message: this.message.value
+          };
+
+          fetch("AKfycbylbVJNpQfctPGRQqqRyGeGc5JHDZ9ktFaZT5CLiZE", {
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+          .then(() => alert("Message sent!"))
+          .catch(() => alert("Something went wrong."));
+        });
+      </script>
+
 
       <div class="social-icons">
         <a
