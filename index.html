@@ -425,9 +425,9 @@
           e.preventDefault();
 
           const formData = new URLSearchParams();
-            formData.append(this.name.value);
-            formData.append(this.email.value);
-            formData.append(this.message.value);
+            formData.append("name", this.name.value);
+            formData.append("email", this.email.value);
+            formData.append("message", this.message.value);
 
             fetch("https://script.google.com/macros/library/d/1TltTM9jl15dy-fyKI8aiN9EQKTnpk82vJc-dmsezoakyaGcwk_JXS4vJ/1", {
               method: "POST",
